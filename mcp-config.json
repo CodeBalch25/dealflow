@@ -1,0 +1,83 @@
+{
+  "mcpServers": {
+    "dealflow": {
+      "command": "node",
+      "args": ["server/mcp-server.js"],
+      "env": {
+        "GROQ_API_KEY": "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",
+        "HUGGINGFACE_API_KEY": "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"
+      },
+      "tools": [
+        {
+          "name": "analyze_property",
+          "description": "Analyze a real estate property investment with AI-powered insights",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "description": "Property address"
+              },
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "state": {
+                "type": "string",
+                "description": "State code"
+              },
+              "zipCode": {
+                "type": "string",
+                "description": "ZIP code"
+              },
+              "purchasePrice": {
+                "type": "number",
+                "description": "Purchase price in USD"
+              },
+              "monthlyRent": {
+                "type": "number",
+                "description": "Expected monthly rent in USD"
+              }
+            },
+            "required": ["address", "purchasePrice", "monthlyRent"]
+          }
+        },
+        {
+          "name": "get_market_data",
+          "description": "Get real-time market data for a location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "state": {
+                "type": "string",
+                "description": "State code"
+              }
+            },
+            "required": ["city", "state"]
+          }
+        },
+        {
+          "name": "compare_properties",
+          "description": "Compare multiple properties side by side",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                },
+                "description": "Array of property objects to compare"
+              }
+            },
+            "required": ["properties"]
+          }
+        }
+      ]
+    }
+  }
+}
